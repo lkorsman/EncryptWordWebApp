@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EWWebApp.Models;
+using EWWebApp.Backend;
 
 namespace EWWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        EWBackend myData = new EWBackend();
         public IActionResult Index()
         {
             return View();
@@ -29,9 +31,39 @@ namespace EWWebApp.Controllers
             return View();
         }
 
+        // Get 
         public IActionResult Encrypt()
         {
-            return View();
+            return View(myData);
+        }
+
+        // Post
+        [HttpPost]
+        public ActionResult Encrypt([Bind(
+                                    "Word,"+
+                                    "Result,"+
+                                    "")] EWBackend data)
+        {
+            if (data == null)
+            {
+                // Send to Error Page
+                return RedirectToAction("Error", new { route = "Home", action = "Error" });
+            }
+
+            if (string.IsNullOrEmpty(data.Word))
+            {
+                // Send back for Edit
+                return View(data);
+            }
+
+            return RedirectToAction("Result", "Home", data);
+        }
+
+        // POST
+        public IActionResult Result(EWBackend data)
+        {
+            data.Encrypt(data.Word);
+            return View(data);
         }
 
         public IActionResult Error()

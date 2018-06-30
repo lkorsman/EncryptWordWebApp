@@ -1,4 +1,17 @@
-﻿@{
-    ViewData["Title"] = "Encrypt";
-}
+﻿@model EWWebApp.Backend.EWBackend;
+
 <h2>Encrypt Word</h2>
+
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken();
+            @Html.DisplayNameFor(m => m.Word);
+            @Html.EditorFor(m => m.Word);
+            @Html.ValidationMessageFor(m => m.Word);
+            <input type="submit" value="Submit" class="btn btn-succss" />
+        }
+    </div>
+</div>
