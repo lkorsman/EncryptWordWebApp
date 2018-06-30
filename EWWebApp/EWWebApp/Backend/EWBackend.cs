@@ -27,7 +27,6 @@ namespace EWWebApp.Backend
         {
             Word = word;
             Result = "";
-
         }
 
         public EWBackend(String word, String result)

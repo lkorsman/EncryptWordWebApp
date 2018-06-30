@@ -39,7 +39,8 @@ namespace EWWebApp.Controllers
 
         // Post
         [HttpPost]
-        public ActionResult Encrypt([Bind(
+        [ValidateAntiForgeryToken]
+        public ActionResult Encrypt([Bind(include:
                                     "Word,"+
                                     "Result,"+
                                     "")] EWBackend data)

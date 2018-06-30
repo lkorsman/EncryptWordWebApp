@@ -4,7 +4,14 @@
 
 <div class="container">
     <div class="row">
-        Result:
-        @Model.Result
+        <h4>
+            Encrypted Word:
+            @Model.Result
+        </h4>
+    </div>
+    <div class="row">
+        <br />
+        @Html.ActionLink("Encrypt Another Word", "Encrypt", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-success" })
+        @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-info" })
     </div>
 </div>
