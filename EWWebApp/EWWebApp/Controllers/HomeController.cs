@@ -61,7 +61,7 @@ namespace EWWebApp.Controllers
         }
 
         // POST
-        public IActionResult Result(EWBackend data)
+        public IActionResult Result(EWBackend data = null)
         {
             data.Encrypt(data.Word);
             return View(data);

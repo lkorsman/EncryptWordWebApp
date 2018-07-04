@@ -1,17 +1,15 @@
 ﻿@model EWWebApp.Backend.EWBackend;
 
-<h2>Results</h2>
+<h2>Result</h2>
 
 <div class="container">
     <div class="row">
-        <h4>
             Encrypted Word:
             @Model.Result
-        </h4>
     </div>
     <div class="row">
         <br />
-        @Html.ActionLink("Encrypt Another Word", "Encrypt", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-success" })
-        @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-info" })
+        @Html.ActionLink("Encrypt Another Word", "Encrypt", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-info" })
+        @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
     </div>
 </div>
