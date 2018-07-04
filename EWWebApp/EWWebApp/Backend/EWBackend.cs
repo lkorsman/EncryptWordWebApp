@@ -17,22 +17,62 @@ namespace EWWebApp.Backend
         [Required(ErrorMessage = "Word is required")]
         public string Result { get; set; }
 
+        [Display(Name = "Shift", Description = "Caesar shift value")]
+        [Required(ErrorMessage = "Shift value is required")]
+        private int Shift { get; set; }
+
+        [Display(Name = "Guesses", Description = "Number of Guesses")]
+        [Required(ErrorMessage = "Guesses is required")]
+        public int NumberOfGuesses { get; set; }
+
+        [Display(Name = "Player guess", Description = "Guess of Shift")]
+        [Required(ErrorMessage = "Guess required")]
+        public int Guess { get; set; }
+
+        [Display(Name = "Correct", Description = "Shift guess true")]
+        [Required(ErrorMessage = "Guesses is required")]
+        public bool Correct { get; set; }
+
         public EWBackend()
         {
+            Shift = 3;
+            NumberOfGuesses = 0;
             Word = "";
             Result = "";
+            Correct = false;
+            Guess = 0;
         }
 
         public EWBackend(String word)
         {
+            Shift = 3;
+            NumberOfGuesses = 0;
             Word = word;
             Result = "";
+            Correct = false;
+            Guess = 0;
         }
 
         public EWBackend(String word, String result)
         {
+            Shift = 3;
+            NumberOfGuesses = 0;
             Word = word;
             Result = result;
+            Correct = false;
+            Guess = 0;
+        }
+
+        public bool GuessShift(int guess)
+        {
+            NumberOfGuesses++;
+            if (guess == Shift)
+            { 
+                Correct = true;
+                return true;
+            }
+            else
+                return false;
         }
 
         public void Encrypt(String word)

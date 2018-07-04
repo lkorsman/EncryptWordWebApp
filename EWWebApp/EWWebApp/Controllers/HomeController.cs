@@ -67,6 +67,26 @@ namespace EWWebApp.Controllers
             return View(data);
         }
 
+        //GET
+        public IActionResult GuessShift()
+        {
+            return View(myData);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult GuessShift(EWBackend data)
+        {
+            if (data == null)
+            {
+                // Send to Error Page
+                return RedirectToAction("Error", new { route = "Home", action = "Error" });
+            }
+            data.GuessShift(data.Guess);
+            return View(data);
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
