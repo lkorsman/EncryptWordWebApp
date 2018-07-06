@@ -5,11 +5,36 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            Number of Guesses: @Model.NumberOfGuesses <br />
-            Guessed Correct: @Model.Correct <br />
+            <table>
+                <tr>
+                    <th>
+                       # of Guesses
+                    </th>
+                    <th>
+                        Guessed Correct
+                    </th>
+                    <th>
+                        Word
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Model.NumberOfGuesses
+                    </td>
+                    <td>
+                        @Model.Correct
+                    </td>
+                    <td>
+                        @Model.Word
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
+
+<br />
+<br />
 
 <div class="container">
     @using (Html.BeginForm())
@@ -17,6 +42,9 @@
         <div class="col-md-4 text-left">
             <div class="row">
                 @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Result)
+                @Html.HiddenFor(m => m.NumberOfGuesses)
+                @Html.HiddenFor(m => m.Word)
                 @Html.EditorFor(m => m.Guess)
                 @Html.ValidationMessageFor(m => m.Guess)
             </div>

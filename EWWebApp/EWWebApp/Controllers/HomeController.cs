@@ -43,6 +43,10 @@ namespace EWWebApp.Controllers
         public ActionResult Encrypt([Bind(include:
                                     "Word,"+
                                     "Result,"+
+                                    "Shift,"+
+                                    "NumberOfGuesses,"+
+                                    "Guess,"+
+                                    "Correct,"+
                                     "")] EWBackend data)
         {
             if (data == null)
@@ -56,7 +60,6 @@ namespace EWWebApp.Controllers
                 // Send back for Edit
                 return View(data);
             }
-
             return RedirectToAction("Result", "Home", data);
         }
 
@@ -76,7 +79,14 @@ namespace EWWebApp.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult GuessShift(EWBackend data)
+        public IActionResult GuessShift([Bind(include:
+                                    "Word,"+
+                                    "Result,"+
+                                    "Shift,"+
+                                    "NumberOfGuesses,"+
+                                    "Guess,"+
+                                    "Correct,"+
+                                    "")] EWBackend data)
         {
             if (data == null)
             {
