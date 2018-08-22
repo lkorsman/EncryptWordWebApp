@@ -33,6 +33,48 @@ namespace EWWebApp.Backend
         [Required(ErrorMessage = "Guesses is required")]
         public bool Correct { get; set; }
 
+        private static volatile EWBackend instance;
+        private static Object syncRoot = new Object();
+
+        public static EWBackend Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new EWBackend();
+                            SetDataSource(1);
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
+
+        // Get the Datasource to use
+        private static EWMockDataSource DataSource;
+
+        /// <summary>
+        /// Sets the Datasource to be Mock or SQL
+        /// </summary>
+        /// <param name="dataSourceEnum"></param>
+        public static void SetDataSource(int dataSourceEnum)
+        {
+            if (dataSourceEnum == 0)
+            {
+                // SQL not hooked up yet...
+                throw new NotImplementedException();
+            }
+
+            // Default is to use the Mock
+            DataSource = EWMockDataSource.Instance;
+        }
+
         public EWBackend()
         {
             Shift = 3;
@@ -77,12 +119,12 @@ namespace EWWebApp.Backend
 
         public void Encrypt(String word)
         {
-            int SHIFT = 3;
+            Word = word;
             string output = string.Empty;   // String to hold encryption result
 
                 // Encrypt each letter of string using SHIFT
                 foreach (char ch in word)
-                    output += Cipher(ch, SHIFT);
+                    output += Cipher(ch, Shift);
 
             Result = output;
         }
@@ -95,7 +137,6 @@ namespace EWWebApp.Backend
             // If letter isn't alphabetical then return the character unmodified
             if (!char.IsLetter(letter))
             {
-
                 return letter;
             }
 

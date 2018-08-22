@@ -42,9 +42,6 @@
         <div class="col-md-4 text-left">
             <div class="row">
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.Result)
-                @Html.HiddenFor(m => m.NumberOfGuesses)
-                @Html.HiddenFor(m => m.Word)
                 @Html.EditorFor(m => m.Guess)
                 @Html.ValidationMessageFor(m => m.Guess)
             </div>

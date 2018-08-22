@@ -8,9 +8,6 @@
         <div class="col-md-4 text-left">
             <div class="row">
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.Result)
-                @Html.HiddenFor(m => m.NumberOfGuesses)
-                @Html.HiddenFor(m => m.Guess)
                 @Html.DisplayNameFor(m => m.Word)<text>&nbsp&nbsp</text>
                 @Html.EditorFor(m => m.Word)
                 @Html.ValidationMessageFor(m => m.Word)

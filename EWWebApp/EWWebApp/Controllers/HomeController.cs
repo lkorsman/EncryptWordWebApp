@@ -11,7 +11,7 @@ namespace EWWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        EWBackend myData = new EWBackend();
+        private EWBackend myData = EWBackend.Instance;
         public IActionResult Index()
         {
             return View();
@@ -40,34 +40,21 @@ namespace EWWebApp.Controllers
         // Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Encrypt([Bind(include:
-                                    "Word,"+
-                                    "Result,"+
-                                    "Shift,"+
-                                    "NumberOfGuesses,"+
-                                    "Guess,"+
-                                    "Correct,"+
-                                    "")] EWBackend data)
+        public ActionResult Encrypt(string word)
         {
-            if (data == null)
-            {
-                // Send to Error Page
-                return RedirectToAction("Error", new { route = "Home", action = "Error" });
-            }
-
-            if (string.IsNullOrEmpty(data.Word))
+            if (string.IsNullOrEmpty(word))
             {
                 // Send back for Edit
-                return View(data);
+                return View(myData);
             }
-            return RedirectToAction("Result", "Home", data);
+            return RedirectToAction("Result", "Home", new { word });
         }
 
         // POST
-        public IActionResult Result(EWBackend data = null)
+        public IActionResult Result(string word)
         {
-            data.Encrypt(data.Word);
-            return View(data);
+            myData.Encrypt(word);
+            return View(myData);
         }
 
         //GET
@@ -79,22 +66,10 @@ namespace EWWebApp.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult GuessShift([Bind(include:
-                                    "Word,"+
-                                    "Result,"+
-                                    "Shift,"+
-                                    "NumberOfGuesses,"+
-                                    "Guess,"+
-                                    "Correct,"+
-                                    "")] EWBackend data)
+        public IActionResult GuessShift(int guess)
         {
-            if (data == null)
-            {
-                // Send to Error Page
-                return RedirectToAction("Error", new { route = "Home", action = "Error" });
-            }
-            data.GuessShift(data.Guess);
-            return View(data);
+            myData.GuessShift(guess);
+            return View(myData);
         }
 
         public IActionResult Error()
