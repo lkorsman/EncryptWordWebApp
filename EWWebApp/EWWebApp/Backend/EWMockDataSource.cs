@@ -54,5 +54,11 @@ namespace EWWebApp.Backend
             // Create new
             Create(new EWBackend());
         }
+
+        public void Reset()
+        {
+            ewList.Clear();
+            Initialize();
+        }
     }
 }
