@@ -53,7 +53,6 @@ namespace EWWebApp.Backend
         {
             // Create new
             Create(new EWBackend());
-
         }
     }
 }

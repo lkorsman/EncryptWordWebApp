@@ -14,8 +14,16 @@
                         Guessed Correct
                     </th>
                     <th>
-                        Word
+                        Original Word
                     </th>
+                    @{
+                        if (!Model.Result.Equals(""))
+                        {
+                            <th>
+                                Encrypted Word
+                            </th>
+                        }
+                    }
                 </tr>
                 <tr>
                     <td>
@@ -27,6 +35,14 @@
                     <td>
                         @Model.Word
                     </td>
+                    @{ 
+                        if (!Model.Result.Equals(""))
+                        {
+                            <td>
+                                @Model.Result
+                            </td>
+                        }
+                    }
                 </tr>
             </table>
         </div>
