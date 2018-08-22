@@ -36,11 +36,12 @@
 
 
 /* GuessShift tables */
-table, td, th {
-    border: 1px solid black;
-    border-collapse: collapse;
+table.resultTable th, td {
+    margin: 12px 12px 12px 12px;
+    padding: 12px 12px 12px 12px;
+    background-color: lightyellow;
 }
 
-th, td {
-    padding: 15px;
+table.resultTable th {
+    border-bottom: 1px solid black;
 }
