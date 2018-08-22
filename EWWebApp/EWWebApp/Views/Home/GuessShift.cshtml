@@ -17,7 +17,7 @@
                         Original Word
                     </th>
                     @{
-                        if (!Model.Result.Equals(""))
+                        if (Model.Correct == true)
                         {
                             <th>
                                 Encrypted Word
@@ -36,7 +36,7 @@
                         @Model.Word
                     </td>
                     @{ 
-                        if (!Model.Result.Equals(""))
+                        if (Model.Correct == true)
                         {
                             <td>
                                 @Model.Result
