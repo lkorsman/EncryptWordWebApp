@@ -128,6 +128,15 @@ namespace EWWebApp.Backend
 
             Result = output;
         }
+        public void Reset()
+        {
+            Shift = 3;
+            NumberOfGuesses = 0;
+            Word = "";
+            Result = "";
+            Correct = false;
+            Guess = 0;
+        }
 
         private char Cipher(char letter, int key)
         {

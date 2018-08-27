@@ -64,7 +64,8 @@
             <div class="row">
                 <br />
                 <input type="submit" value="Submit" class="btn btn-succss" />
+                @Html.ActionLink("Reset", "Reset", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
             </div>
-        }
+        }      
     </div>
 </div>

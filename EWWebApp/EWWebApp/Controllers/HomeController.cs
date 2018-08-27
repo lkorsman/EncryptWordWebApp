@@ -11,12 +11,16 @@ namespace EWWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        // Create instance of an EncryptWord object
         private EWBackend myData = EWBackend.Instance;
+
+        // Landing page of the app
         public IActionResult Index()
         {
             return View();
         }
 
+        // Placeholder, contains default About page
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -24,6 +28,7 @@ namespace EWWebApp.Controllers
             return View();
         }
 
+        // Placeholder, contains default Contact page
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
@@ -31,7 +36,8 @@ namespace EWWebApp.Controllers
             return View();
         }
 
-        // Get 
+        // GET
+        // Allows user to encrypt a word
         public IActionResult Encrypt()
         {
             return View(myData);
@@ -51,13 +57,15 @@ namespace EWWebApp.Controllers
         }
 
         // POST
+        // Shows result of Caesar cipher encryption
         public IActionResult Result(string word)
         {
             myData.Encrypt(word);
             return View(myData);
         }
 
-        //GET
+        //GET 
+        // allows user to guess Caesar shift value
         public IActionResult GuessShift()
         {
             return View(myData);
@@ -70,6 +78,13 @@ namespace EWWebApp.Controllers
         {
             myData.GuessShift(guess);
             return View(myData);
+        }
+
+        // Resets the EncryptWord (EWBackend object)
+        public IActionResult Reset()
+        {
+            myData.Reset();
+            return RedirectToAction("Encrypt", "Home");
         }
 
         public IActionResult Error()
