@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h2>Guess Shift</h2>
             <table class="resultTable">
                 <tr>
@@ -13,13 +13,13 @@
                         Guessed Correct
                     </th>
                     <th>
-                        Original Word
+                        Encrytped Word
                     </th>
                     @{
                         if (Model.Correct == true)
                         {
                             <th>
-                                Encrypted Word
+                                Original Word
                             </th>
                         }
                     }
@@ -32,13 +32,13 @@
                         @Model.Correct
                     </td>
                     <td>
-                        @Model.Word
+                        @Model.Result
                     </td>
                     @{
                         if (Model.Correct == true)
                         {
                             <td>
-                                @Model.Result
+                                @Model.Word
                             </td>
                         }
                     }
