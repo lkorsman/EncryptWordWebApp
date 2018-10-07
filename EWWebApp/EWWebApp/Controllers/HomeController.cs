@@ -53,6 +53,10 @@ namespace EWWebApp.Controllers
                 // Send back for Edit
                 return View(myData);
             }
+            else if (word.Length <= 3)
+            {
+                return View();
+            }
             return RedirectToAction("Result", "Home", new { word });
         }
 
